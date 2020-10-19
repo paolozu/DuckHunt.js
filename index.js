@@ -33,11 +33,106 @@ function Duck() {
   duck.addEventListener('click', (event) => {
     event.target.classList.add('shot');
     setTimeout(() => {
-      duck.parentNode.removeChild(duck);
+      shot(duck);
     }, 300);
   });
+
+  return duck;
 }
 
-window.onload = () => {
-  Duck();
+function showMenu(){
+
+  // Start Button
+  let startButton = document.createElement('button');
+  startButton.innerText = 'START';
+  startButton.setAttribute("id", "start_button");
+
+  setStyle(startButton, {
+    width: '30%',
+    height: '40px',
+    border: 'solid',
+    borderWidth: '0px',
+    borderRadius: '10px',
+    textAlign: 'center',
+    fontFamily: 'fantasy',
+    margin: '35%'
+  });
+  startButton.addEventListener("click", (event) => {
+    startGame(startButton);
+    event.preventDefault();
+  });
+  document.body.appendChild(startButton);
+
+  // Score Panel
+  let scorePanel = document.createElement('div');
+  setStyle(scorePanel, {
+    width: '100%',
+    textAlign: 'center'
+  });
+
+  let scoreLabel = document.createElement('span');
+  let scoreValue = document.createElement('span');
+  scoreLabel.innerText = 'SCORE: ';
+  scoreValue.innerText = '0';
+  setStyle(scoreLabel, {
+    fontFamily: 'Impact',
+    fontSize: '25px'
+  });
+  setStyle(scoreValue, {
+    fontFamily: 'Impact',
+    fontSize: '25px'
+  });
+  scorePanel.appendChild(scoreLabel);
+  scorePanel.appendChild(scoreValue);
+  document.body.appendChild(scorePanel)
+
+}
+
+let setStyle = function(element, style) {
+  for(let property in style) {
+    element.style[property] = style[property];
+  }
 };
+
+window.onload = () => {
+  showMenu();
+};
+
+function startGame() {
+  let startButton = document.getElementById("start_button");
+  startButton.style.display = "none";
+  for (let i = 0; i < (Math.random() * 3) + 3; i++) {
+    setTimeout(() => {
+      Duck();
+    }, 100);
+  }
+}
+
+
+
+function shot(duck) {
+  duck.parentNode.removeChild(duck);
+  const ducks = document.querySelectorAll('.duck');
+  if (ducks.length === 0) restart();
+}
+
+
+function restart() {
+  let wonAndRestart = document.createElement('button');
+  wonAndRestart.innerHTML = 'YOU WON!\nClick to restart';
+  setStyle(wonAndRestart, {
+    width: '20%',
+    height: '200px',
+    border: 'solid',
+    borderWidth: '5px',
+    borderRadius: '10px',
+    textAlign: 'center',
+    fontFamily: 'fantasy',
+    margin: '35%'
+  });
+  wonAndRestart.addEventListener("click", (event) => {
+    document.body.removeChild(wonAndRestart);
+    startGame();
+  });
+  document.body.appendChild(wonAndRestart);
+}
