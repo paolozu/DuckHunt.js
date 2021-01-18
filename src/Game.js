@@ -38,6 +38,11 @@ export function removeDuck(id) {
   console.log(ducksAlive)
 }
 
+export function removeAllDucks() {
+  clearInterval(gameTimeoutInterval);
+  ducksAlive = []
+}
+
 export function checkLevelSuccess() {
   if (ducksAlive.length === 0) {
     clearInterval(gameTimeoutInterval);
@@ -48,5 +53,6 @@ export function checkLevelSuccess() {
 
 export function reset() {
   clearInterval(gameTimeoutInterval);
+  removeAllDucks();
   Score.reset();
 }
