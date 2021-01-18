@@ -1,22 +1,16 @@
 import {setStyle} from './utils';
 import {Duck} from './Duck'
-import {showRestart} from './UI';
+import {hideMenu, showRestartButton} from './UI';
 import * as Score from './Score';
 
-let game_result;
+let gameResult;
 let ducksAlive = [];
 let gameTimeoutInterval;
 
-export function startGame(button) {
-
-   if (button) button.parentNode.removeChild(button);
+export function startGame() {
+   hideMenu();
    generateDucks(5);
-   gameTimeoutInterval = setInterval(() => showRestart(), 10000+700);
-
-}
-
-export  function restartGame() {
-
+   gameTimeoutInterval = setInterval(() => resetGame(), 10000+700);
 }
 
 export function generateDucks(numOfDucks) {
@@ -46,13 +40,14 @@ export function removeAllDucks() {
 export function checkLevelSuccess() {
   if (ducksAlive.length === 0) {
     clearInterval(gameTimeoutInterval);
-    game_result = "WIN";
-    showRestart(game_result)
+    gameResult = "WIN";
+    showRestartButton()
   }
 }
 
-export function reset() {
+export function resetGame() {
   clearInterval(gameTimeoutInterval);
   removeAllDucks();
   Score.reset();
+  showRestartButton();
 }

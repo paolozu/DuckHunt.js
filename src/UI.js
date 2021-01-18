@@ -6,6 +6,8 @@ export function initUI(){
 
   // Start Button
   let startButton = document.createElement('button');
+  startButton.id = 'start_button';
+  startButton.classList.add("play-buttons");
   startButton.innerText = 'START';
   startButton.setAttribute("id", "start_button");
   setStyle(startButton, {
@@ -19,7 +21,7 @@ export function initUI(){
     margin: '35%'
   });
   startButton.addEventListener("click", (event) => {
-    startGame(startButton);
+    startGame();
   });
   document.body.appendChild(startButton);
 
@@ -47,9 +49,11 @@ export function initUI(){
   document.body.appendChild(scorePanel)
 }
 
-export function showRestart(game_result = "LOSE") {
+export function showRestartButton(game_result = "LOSE") {
   console.log("Showing Restart...")
   let restartButton = document.createElement('button');
+  restartButton.classList.add("play-buttons");
+  restartButton.id = 'restart_button';
   restartButton.innerHTML = '<p>YOU '+game_result+'</p>Click to restart';
 
   setStyle(restartButton, {
@@ -64,9 +68,12 @@ export function showRestart(game_result = "LOSE") {
   });
 
   restartButton.addEventListener("click", (event) => {
-    Game.reset();
-    startGame(restartButton);
+    startGame();
   });
   document.body.appendChild(restartButton);
 
+}
+
+export function hideMenu() {
+  document.querySelectorAll('.play-buttons').forEach(btn => btn.parentNode.removeChild(btn));
 }
