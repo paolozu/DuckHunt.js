@@ -1,10 +1,14 @@
 import * as Score from "./Score";
+import * as Game from "./Game";
+
 export function Duck() {
 
+  this.id = Math.floor(100000 + Math.random() * 900000);
+
   this.create = function() {
-    console.log("Show...")
     this.element = document.createElement('div');
     this.element.classList.add('duck');
+    this.element.id= this.id.toString();
     document.body.appendChild(this.element);
 
     // Animazione "batti le ali"
@@ -47,7 +51,7 @@ export function Duck() {
 
   this.shot = function(duck) {
     if (duck != null) duck.parentNode.removeChild(duck);
-    //const ducks = document.querySelectorAll('.duck');
+    Game.removeDuck(duck.id);
     Score.increase(1);
   };
 

@@ -1,6 +1,6 @@
 import {setStyle} from './utils';
 import {startGame} from './Game';
-import * as Score from './Score';
+import * as Game from './Game';
 
 export function initUI(){
 
@@ -47,12 +47,10 @@ export function initUI(){
   document.body.appendChild(scorePanel)
 }
 
-export function showRestart(won) {
+export function showRestart(game_result = "LOSE") {
   console.log("Showing Restart...")
   let restartButton = document.createElement('button');
-  won === true ?
-      restartButton.innerHTML = '<p>YOU WIN!</p>Click to restart'
-      : restartButton.innerHTML = '<p>YOU LOSE!</p>Click to restart';
+  restartButton.innerHTML = '<p>YOU '+game_result+'</p>Click to restart';
 
   setStyle(restartButton, {
     width: '20%',
@@ -66,7 +64,7 @@ export function showRestart(won) {
   });
 
   restartButton.addEventListener("click", (event) => {
-    Score.reset();
+    Game.reset();
     startGame(restartButton);
   });
   document.body.appendChild(restartButton);
