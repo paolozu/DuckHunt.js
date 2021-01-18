@@ -1,6 +1,8 @@
+import * as Score from "./Score";
 export function Duck() {
 
-  this.show = function() {
+  this.create = function() {
+    console.log("Show...")
     this.element = document.createElement('div');
     this.element.classList.add('duck');
     document.body.appendChild(this.element);
@@ -37,10 +39,16 @@ export function Duck() {
     this.element.addEventListener('click', (event) => {
       event.target.classList.add('shot');
       setTimeout(() => {
-        shot(this.element);
+        this.shot(this.element);
       }, 300);
     });
 
+  };
+
+  this.shot = function(duck) {
+    if (duck != null) duck.parentNode.removeChild(duck);
+    //const ducks = document.querySelectorAll('.duck');
+    Score.increase(1);
   };
 
   this.remove = function(){
@@ -49,16 +57,8 @@ export function Duck() {
     this.element.style.top = '-600px';
     setTimeout( ()  => {
       clearInterval(this.flapInterval);
-      this.element.parentNode.removeChild(this.element)
+      this.element.remove();
     },1500)
-  }
+  };
 
-}
-
-function shot(duck) {
-  if (duck != null) duck.parentNode.removeChild(duck);
-  const ducks = document.querySelectorAll('.duck');
-  if (ducks.length === 0) {
-
-  }
 }

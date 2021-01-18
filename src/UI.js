@@ -1,5 +1,6 @@
 import {setStyle} from './utils';
 import {startGame} from './Game';
+import * as Score from './Score';
 
 export function initUI(){
 
@@ -26,6 +27,7 @@ export function initUI(){
   let scorePanel = document.createElement('div');
   let scoreLabel = document.createElement('span');
   let scoreValue = document.createElement('span');
+  scoreValue.id = 'score';
   scoreValue.innerText = '0';
   scoreLabel.innerText = 'SCORE: ';
   setStyle(scorePanel, {
@@ -43,4 +45,30 @@ export function initUI(){
   scorePanel.appendChild(scoreLabel);
   scorePanel.appendChild(scoreValue);
   document.body.appendChild(scorePanel)
+}
+
+export function showRestart(won) {
+  console.log("Showing Restart...")
+  let restartButton = document.createElement('button');
+  won === true ?
+      restartButton.innerHTML = '<p>YOU WIN!</p>Click to restart'
+      : restartButton.innerHTML = '<p>YOU LOSE!</p>Click to restart';
+
+  setStyle(restartButton, {
+    width: '20%',
+    height: '200px',
+    border: 'solid',
+    borderWidth: '5px',
+    borderRadius: '10px',
+    textAlign: 'center',
+    fontFamily: 'fantasy',
+    margin: '35%'
+  });
+
+  restartButton.addEventListener("click", (event) => {
+    Score.reset();
+    startGame(restartButton);
+  });
+  document.body.appendChild(restartButton);
+
 }
