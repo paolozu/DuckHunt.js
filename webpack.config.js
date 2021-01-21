@@ -13,7 +13,10 @@ module.exports = {
   },
   plugins: [
       new CleanWebpackPlugin,
-      new HtmlWebpackPlugin({})
+      new HtmlWebpackPlugin({
+        title: 'DuckHunt.js',
+        favicon: "./src/images/icon.ico"
+      })
   ],
   output: {
     filename: '[name].bundle.js',
