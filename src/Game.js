@@ -56,6 +56,7 @@ export function getDifficulty() {
 
 export function resetGame(gameResult = "LOSE") {
   clearInterval(gameTimeoutInterval);
+  Score.checkBestScore();
   Game.removeAllDucks();
   UI.showRestartButton(gameResult);
   UI.showDifficultyPanel();
