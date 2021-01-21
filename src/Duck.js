@@ -1,9 +1,11 @@
 import * as Score from "./Score";
 import * as Game from "./Game";
+import {setStyle} from './utils';
 
-export function Duck() {
+export function Duck(difficulty) {
 
   this.id = Math.floor(100000 + Math.random() * 900000);
+  this.speed = difficulty === 'easy' ? '3s' : '1s';
 
   this.create = function() {
     this.element = document.createElement('div');
@@ -21,6 +23,8 @@ export function Duck() {
     let lateralPosition = Math.random() * window.innerWidth;
     this.element.style.top = `${medialPosition}px`;
     this.element.style.left = `${lateralPosition}px`;
+
+    this.setSpeed(this.element, this.speed);
 
     // Muovi papera
     this.positionInterval = setInterval(() => {
@@ -53,6 +57,12 @@ export function Duck() {
     if (duck != null) duck.parentNode.removeChild(duck);
     Game.removeDuck(duck.id);
     Score.increase(1);
+  };
+
+  this.setSpeed = function(element, speed) {
+    setStyle(element, {
+      transition: `top ${speed}, left ${speed}`
+    });
   };
 
   this.remove = function(){
