@@ -1,4 +1,5 @@
-import {Duck} from './Duck'
+import { Duck } from './Duck';
+import { DIFFICULTY_EASY, GAMERESULT_LOSE, GAMERESULT_WIN } from './const';
 import * as UI from './UI';
 import * as Score from './Score';
 import * as Game from './Game';
@@ -14,11 +15,11 @@ export function startGame() {
   UI.hideMenu();
   Score.reset();
   generateDucks();
-  gameTimeoutInterval = setInterval(() => resetGame(), 10000+700);
+  gameTimeoutInterval = setInterval(() => resetGame(), 10700);
 }
 
 export function generateDucks() {
-  difficulty === 'easy' ? numOfDucks = 5 : numOfDucks = 7;
+  difficulty === DIFFICULTY_EASY ? numOfDucks = 5 : numOfDucks = 7;
 
   for (let i = 0; i < numOfDucks; i++){
     let duck = new Duck(difficulty);
@@ -34,7 +35,6 @@ export function removeDuck(id) {
   ducksAlive = ducksAlive.filter((duck) => {
     return duck.toString() !== id;
   });
-  console.log(ducksAlive)
 }
 
 export function removeAllDucks() {
@@ -44,7 +44,7 @@ export function removeAllDucks() {
 
 export function checkLevelSuccess() {
   if (ducksAlive.length === 0) {
-    gameResult = "WIN";
+    gameResult = GAMERESULT_WIN;
     resetGame(gameResult);
   }
 }
@@ -54,7 +54,7 @@ export function getDifficulty() {
   return difficulty = document.getElementById('difficulty-select').value;
 }
 
-export function resetGame(gameResult = "LOSE") {
+export function resetGame(gameResult = GAMERESULT_LOSE) {
   clearInterval(gameTimeoutInterval);
   Score.checkBestScore();
   Game.removeAllDucks();

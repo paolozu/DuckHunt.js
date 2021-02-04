@@ -15,7 +15,7 @@ module.exports = {
       new CleanWebpackPlugin,
       new HtmlWebpackPlugin({
         title: 'DuckHunt.js',
-        favicon: "./src/images/icon.ico"
+        favicon: "./src/assets/img/icon.ico"
       })
   ],
   output: {

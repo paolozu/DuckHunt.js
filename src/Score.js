@@ -17,7 +17,6 @@ export function reset() {
 }
 
 export function checkBestScore() {
-  console.log(bestScore)
   if (scoreValue > bestScore ) setBestScore(scoreValue)
 }
 

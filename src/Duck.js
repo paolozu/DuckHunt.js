@@ -1,11 +1,12 @@
 import * as Score from "./Score";
 import * as Game from "./Game";
-import {setStyle} from './utils';
+import { setStyle } from './utils';
+import {DIFFICULTY_EASY} from './const';
 
 export function Duck(difficulty) {
 
   this.id = Math.floor(100000 + Math.random() * 900000);
-  this.speed = difficulty === 'easy' ? '3s' : '1s';
+  this.speed = difficulty === DIFFICULTY_EASY ? '3s' : '1s';
 
   this.create = function() {
     this.element = document.createElement('div');
@@ -19,16 +20,16 @@ export function Duck(difficulty) {
     }, (500));
 
     //  Generazione posizione iniziale random
-    let medialPosition = Math.random() * window.innerHeight;
+    let verticalPosition = Math.random() * window.innerHeight;
     let lateralPosition = Math.random() * window.innerWidth;
-    this.element.style.top = `${medialPosition}px`;
+    this.element.style.top = `${verticalPosition}px`;
     this.element.style.left = `${lateralPosition}px`;
 
     this.setSpeed(this.element, this.speed);
 
     // Muovi papera
     this.positionInterval = setInterval(() => {
-      const newMedialPosition = Math.random() * window.innerHeight;
+      const newVerticalPosition = Math.random() * window.innerHeight;
       const newLateralPosition = Math.random() * window.innerWidth;
 
       // Aggiunge e rimuove la classe 'right' a seconda della direzione in cui la papera si sta muovendo.
@@ -39,7 +40,7 @@ export function Duck(difficulty) {
       }
 
       // Aggiorna posizione della papera alle nuove coordinate
-      this.element.style.top = `${newMedialPosition}px`;
+      this.element.style.top = `${newVerticalPosition}px`;
       this.element.style.left = `${newLateralPosition}px`;
     }, (500));
 
@@ -68,7 +69,10 @@ export function Duck(difficulty) {
   this.remove = function(){
     console.log("Remove in progress...")
     clearInterval(this.positionInterval);
+
+    // Animazione 'vola via'
     this.element.style.top = '-600px';
+
     setTimeout( ()  => {
       clearInterval(this.flapInterval);
       this.element.remove();

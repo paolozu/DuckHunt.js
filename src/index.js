@@ -1,4 +1,4 @@
-import './style.css';
+import './css/style.css';
 import './Duck';
 import {initUI} from './UI';
 
