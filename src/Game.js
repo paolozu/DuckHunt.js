@@ -58,6 +58,6 @@ export function resetGame(gameResult = GAMERESULT_LOSE) {
   clearInterval(gameTimeoutInterval);
   Score.checkBestScore();
   Game.removeAllDucks();
-  UI.showRestartButton(gameResult);
   UI.showDifficultyPanel();
+  UI.showRestartButton(gameResult);
 }

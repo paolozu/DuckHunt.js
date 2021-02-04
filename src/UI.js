@@ -21,7 +21,7 @@ export function showRestartButton(gameResult) {
     borderRadius: '10px',
     textAlign: 'center',
     fontFamily: 'fantasy',
-    margin: '35%'
+    margin: '40%'
   });
 
   restartButton.addEventListener("click", (event) => {
