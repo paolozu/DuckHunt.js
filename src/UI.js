@@ -11,7 +11,7 @@ export function showRestartButton(gameResult) {
   let restartButton = document.createElement('button');
   restartButton.classList.add('play-buttons', 'ui-element');
   restartButton.id = 'restart_button';
-  restartButton.innerHTML = '<p>YOU '+gameResult+'</p>Click here to restart';
+  restartButton.innerHTML = '<p>YOU ' + gameResult + '</p>Click here to restart';
 
   setStyle(restartButton, {
     width: '20%',
@@ -28,7 +28,6 @@ export function showRestartButton(gameResult) {
     startGame();
   });
   document.body.appendChild(restartButton);
-
 }
 
 export function showDifficultyPanel() {
