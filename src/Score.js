@@ -1,4 +1,4 @@
-import {checkLevelSuccess} from './Game';
+import { checkLevelSuccess } from './Game';
 
 let scoreValue = 0;
 let bestScore = getBestScore();

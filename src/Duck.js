@@ -1,7 +1,7 @@
 import * as Score from "./Score";
 import * as Game from "./Game";
 import { setStyle } from './utils';
-import {DIFFICULTY_EASY} from './const';
+import { DIFFICULTY_EASY } from './const';
 
 export function Duck(difficulty) {
 
@@ -66,7 +66,7 @@ export function Duck(difficulty) {
     });
   };
 
-  this.remove = function(){
+  this.remove = function() {
     console.log("Remove in progress...")
     clearInterval(this.positionInterval);
 

@@ -1,7 +1,7 @@
-import {setStyle} from './utils';
-import {startGame} from './Game';
+import { setStyle } from './utils';
+import { startGame } from './Game';
 
-export function initUI(){
+export function initUI() {
   showDifficultyPanel();
   showStartButton();
   showScorePanel();
