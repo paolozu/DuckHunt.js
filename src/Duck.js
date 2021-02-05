@@ -11,7 +11,7 @@ export function Duck(difficulty) {
   this.create = function() {
     this.element = document.createElement('div');
     this.element.classList.add('duck');
-    this.element.id= this.id.toString();
+    this.element.id = this.id.toString();
     document.body.appendChild(this.element);
 
     // Animazione "batti le ali"
@@ -66,8 +66,7 @@ export function Duck(difficulty) {
     });
   };
 
-  this.remove = function() {
-    console.log("Remove in progress...")
+  this.leave = function() {
     clearInterval(this.positionInterval);
 
     // Animazione 'vola via'

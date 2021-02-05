@@ -17,7 +17,7 @@ export function reset() {
 }
 
 export function checkBestScore() {
-  if (scoreValue > bestScore ) setBestScore(scoreValue)
+  if (scoreValue > bestScore ) setBestScore(scoreValue);
 }
 
 export function getBestScore() {

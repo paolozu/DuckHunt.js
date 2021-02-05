@@ -26,7 +26,7 @@ export function generateDucks() {
     duck.create();
     ducksAlive.push(duck.id);
     setTimeout(() => {
-      duck.remove();
+      duck.leave();
     } , 10000);
   }
 }
